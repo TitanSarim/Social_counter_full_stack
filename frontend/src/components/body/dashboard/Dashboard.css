@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Volkhov:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+.dashboard-container{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
+    width: 75%;
+    margin-top: 200px;
+    height: 100%;
+    margin: auto;
+    margin-bottom: 300px;
+    background-color: transparent;
+    /* border: 1px solid black; */
+}
+
+
+.dashboard-container>p{
+    font-size: 35px;
+    font-weight: 600;
+    letter-spacing: 5px;
+    font-family: 'Roboto', sans-serif;
+    color: rgb(52, 52, 52)
+}
+
+.dashboard-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+
+.social-counter-container{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    border: 1px solid rgb(209, 209, 209);
+    width:350px;
+    height: 200px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 500ms;
+}
+
+.hover-effect{
+    transform: scale(1.02);
+    background-color: rgb(214, 214, 214);
+}
+
+.hover-effect-facebook{
+    transform: scale(1.02);
+    background-color: rgb(195, 207, 236);
+}
+
+.hover-effect-youtube{
+    transform: scale(1.02);
+    background-color: rgb(245, 212, 212);
+}
+
+.hover-effect-instagram{
+    transform: scale(1.02);
+    background-color: rgb(246, 205, 249);
+}
+
+.social-counter-container:hover{
+    transform: scale(1.02);
+    background-color: rgb(214, 214, 214);
+}
+
+.social-counter-name{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    gap: 20px;
+    background-color: transparent;
+}
+
+.social-counter-youtube{
+    color: tomato;
+    background-color: transparent;
+
+}
+.social-counter-tiktok{
+    color: rgb(34, 34, 34);
+    background-color: transparent;
+
+}
+.social-counter-facebook{
+    color: rgb(69, 69, 255);
+    background-color: transparent;
+
+}
+.social-counter-instagram{
+    color: rgb(255, 23, 150);
+    background-color: transparent;
+
+}
+
+
+.social-counter-name p{
+    font-size: 20px;
+    font-weight: 400;
+    background-color: transparent;
+
+}
+
+
+.counters-main-container{
+    position: relative;
+    height: 30px !important;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    margin: 20px 0px;
+}
+
+.social-counter-amount{
+    position: absolute;
+    font-size: 28px;
+    font-weight: 700;
+    color: rgb(59, 59, 59);
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    height: 21px;
+    /* border: 1px solid black; */
+}
+
+.changedDigit{
+    background-color: transparent;
+}
+
+.animated{
+    transform: translateY(-20px);
+    transition: transform 200ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 99;
+    height: 1px;
+}

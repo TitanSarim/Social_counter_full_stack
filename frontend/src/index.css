@@ -1,0 +1,32 @@
+*{
+ background-color: white;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+#__react-alert__ div{
+  background-color: transparent;
+}
+
+#__react-alert__ div div svg{
+  background-color: transparent;
+}
+
+#__react-alert__ div div span{
+  background-color: transparent;
+}

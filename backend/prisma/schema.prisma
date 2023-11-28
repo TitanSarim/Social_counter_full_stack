@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  userid    Int      @id @default(autoincrement())
+  email     String   @unique
+  username  String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model urls {
+    id  Int      @id @default(autoincrement())
+    userid Int
+    appname String?
+    app_url       String?   @db.VarChar(3000)
+    priority Int
+    isActivated Boolean
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model title{
+  id  Int      @id @default(autoincrement())
+  userid Int
+  title String? @db.VarChar(255)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+
+model followuptitle{
+  id  Int      @id @default(autoincrement())
+  userid Int
+  title String? @db.VarChar(255)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model logo{
+  id  Int      @id @default(autoincrement())
+  userid Int
+  icon    Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

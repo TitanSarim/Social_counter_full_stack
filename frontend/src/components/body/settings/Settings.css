@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Volkhov:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+.settings-container{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    width: 75%;
+    margin: auto;
+    top: 100px;
+    margin-bottom: 700px;
+    background-color: transparent;
+}
+
+.company-info-container{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    width: 960px;
+    justify-content: space-evenly;
+    border: 1px solid #753ffd72;
+    border-radius: 6px;
+    padding: 25px 25px;
+}
+
+
+
+.company-info-title, .company-info-logo{
+    position: relative;
+    display: flex;
+    width: 420px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.company-info-title p, .company-info-logo p{
+    margin-bottom: 0% !important;
+    font-size: 17px !important;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+}
+
+.company-info-title button, .company-info-logo button{
+    background-color: #753ffd;
+    color: white;
+    border: none;
+    font-size: 16px;
+    padding: 8px 18px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 500ms;
+}
+
+.company-info-title input{
+    background-color: transparent;
+    outline: none;
+    border: none;
+    font-size: 17px;
+    padding: 3px 5px;
+    border-bottom: 1px solid rgb(128, 128, 128);
+}
+.company-info-title button:hover, .company-info-logo button:hover{
+    transform: scale(1.02);
+}
+
+.company-info-image{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.company-info-logo input::file-selector-button{
+    background-color: tomato;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    width: 150px;
+}
+
+.table-container{
+    border: 1px solid rgb(197, 197, 197);
+    border-radius: 4px;
+}
+
+.theader-container tr th{
+    width: 250px;
+    height: 40px;
+    background-color: #753ffd;
+    color: white;
+}
+
+.tbody-container tr td{
+    width: 250px;
+    text-align: center;
+}
+
+/* table widht setting */
+.priority-table-column{
+    width: 120px !important;
+}
+
+.priority-table-column input{
+    width: 100px !important;
+}
+
+.names-table-column{
+    width: 120px !important;
+}
+
+.button-table-column{
+    width: 130px !important;
+}
+
+/* table width setting ends */
+
+.table-one-row td{
+    background-color: rgb(218, 218, 218) !important;
+}
+
+.tbody-container tr td p{
+    background-color: transparent;
+}
+
+.tbody-container tr td input{
+    border: none;
+    outline: none;
+    border-bottom: 1px solid black;
+    font-size: 16px;
+    padding: 2px 4px;
+    background-color: transparent;
+}
+
+.tbody-container tr td button{
+    background-color: #753ffd;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    padding: 8px 20px;
+    cursor: pointer;
+    transition: all 500ms;
+}
+
+
+.tbody-container tr td button:hover{
+    transform: scale(1.01);
+}
+
+.table-inavtive-btn{
+    background-color: grey !important;
+    cursor: not-allowed !important;
+}
