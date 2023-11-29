@@ -6,6 +6,10 @@ import{
     LOGOUT_USER_SUCCESS,
     LOGOUT_USER_FAIL,
 
+    UPDATE_USER_SUCCESS,
+    UPDATE_USER_REQUEST,
+    UPDATE_USER_FAILED,
+
     CLEAR_ERRORS
 
 } from '../constants/UserConstants'
@@ -54,7 +58,25 @@ export const userLogOut = () => async (dispatch) => {
 
 }
 
+export const UpdateUser = (formData) => async (dispatch) =>{
 
+    try {
+        dispatch({type: UPDATE_USER_REQUEST});
+        
+        const config = { headers: { "Content-Type": "application/json" } };
+
+        const {data} = await axios.put(`/api/v1/usernameupdate`, 
+            formData,
+            config
+        )
+
+        dispatch({type: UPDATE_USER_SUCCESS, payload: data.user});
+        
+    } catch (error) {
+        dispatch({type: UPDATE_USER_FAILED, payload: error.response.data.message});
+    }
+
+}
 // clearing errors
 
 export const clearErrors = () => async (dispatch) => {

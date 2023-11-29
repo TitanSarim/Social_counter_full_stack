@@ -47,6 +47,7 @@ const resgisterUser = catchAsyncError(async(req, res, next) => {
         res.status(201).json({
             success: true,
             message: "Account created successfully",
+            user: user,
             token
         })
 
@@ -101,6 +102,49 @@ const loginUser = catchAsyncError(async(req, res, next) => {
 })
 
 
+const updateUser = catchAsyncError(async(req, res, next) => {
+
+    try {
+        
+        const userid = req.user.userid;
+        const {username} =  req.body
+
+        console.log("userid", userid, username);
+
+        const isUser = await prisma.user.findUnique({
+            where:{
+                userid: userid
+            }
+        })
+
+        if(!isUser){
+                res.status(201).json({
+                success: false,
+                message: "No user found with this id",
+            })
+        }
+
+        const user = await prisma.user.update({
+            where:{
+                userid: userid
+            },
+            data:{
+                username: username
+            }
+        })
+
+        res.status(200).json({
+            success: true,
+            message: "Name Updated Successfully",
+            user: user,
+        })
+ 
+    } catch (error) {
+        return next(new errorHandler(error, 500))
+    }
+
+})
+
 
 const logout = async(req, res) => {
 
@@ -119,5 +163,6 @@ const logout = async(req, res) => {
 module.exports = {
     resgisterUser,
     loginUser,
+    updateUser,
     logout
 }

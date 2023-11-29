@@ -7,6 +7,7 @@ import {FaInstagram} from 'react-icons/fa'
 import {FaFacebookF} from 'react-icons/fa'
 import {AiOutlineSetting} from 'react-icons/ai'
 import {useSelector, useDispatch} from 'react-redux'
+import {UpdateUser} from '../../../actions/userAction'
 import {createTitle, UpdateTitle, clearErrors} from '../../../actions/titleAction'
 import {getFollowUpTitle, createFollowUpTitle, UpdateFollowUpTitle} from '../../../actions/followUpAction'
 import {createLogo, updateLogo, clearImageErrors} from '../../../actions/imageAction'
@@ -26,10 +27,12 @@ const Setting = () => {
   const {logo} = useSelector(state=>state.logo);
   const {url} = useSelector(state=>state.url);
   const {followUp} = useSelector(state=>state.followUp);
+  const {user} = useSelector(state=>state.user)
 
   const [selectedImage, setSelectedImage] = useState(null);
   const [heading, setHeading] =  useState('')
   const [followUpTitle, setFollowUpTitle] = useState('')
+  const [username, setUserName] = useState('')
 
   const [youtube, setYoutube] = useState([])
   const [facebook, setFacebook] = useState([])
@@ -56,6 +59,7 @@ const Setting = () => {
   const [twitterActivate, setTwitterActivate] = useState()
   const [tiktokActivate, setTiktokActivate] = useState()
 
+  console.log("username", username);
 
   const handleTitleChange = (e) => {
     const newTitle = e.target.value;
@@ -71,7 +75,8 @@ const Setting = () => {
     setHeading(title?.title?.title);
     dispatch(getUrl());
     dispatch(getFollowUpTitle())
-  }, [dispatch, title]);
+    setUserName(user?.username)
+  }, [dispatch, title, user]);
 
 
   const handleTitleSubmit = () => {
@@ -112,6 +117,14 @@ const Setting = () => {
       alert.success('Title updated')
     }
 
+  }
+
+  const handleUserNameSubmit = () => {
+    const formData = {
+      username: username
+    }
+      dispatch(UpdateUser(formData))
+      alert.success('Name Updated')
   }
 
   const handleUpload = async (e) => {
@@ -533,8 +546,8 @@ useEffect(() => {
 
       <div className='company-info-title'>
         <p>Company Name</p>
-        <input placeholder='Add your title' value={heading}  onChange={handleTitleChange}/>
-        <button onClick={handleTitleSubmit}>Save</button>
+        <input placeholder='Your Company Name' value={username}  onChange={(e) => setUserName(e.target.value)}/>
+        <button onClick={handleUserNameSubmit}>Save</button>
       </div>
 
       <div className='company-info-title'>
