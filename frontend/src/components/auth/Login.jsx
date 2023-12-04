@@ -14,11 +14,12 @@ const Login = () => {
     const naviagte = useNavigate()
     const alert = useAlert();
 
-    const {error, isAuthenticated} = useSelector((state)=>state.user);
+    const {error, isAuthenticated, user} = useSelector((state)=>state.user);
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
+    const [userName, setUserName] = useState('')
 
     const handlePasswordChange = (event) => {
         setPassword(event.target.value);
@@ -52,45 +53,47 @@ const Login = () => {
         }
       
         if(isAuthenticated){
-            naviagte('/')
+            naviagte('/company/settings')
         }
-    }, [alert, dispatch, error, isAuthenticated, naviagte])
+    }, [alert, dispatch, error, isAuthenticated, naviagte, user])
 
 
 
   return (
-    <div className='auth-container'>
+    <div className='auth-container-master'>
+        <div className='auth-container'>
 
-        <div className='auth-wrapper'>
-            <p>Screen Counter</p>
+            <div className='auth-wrapper'>
+                <p>Login</p>
 
-            <div className='auth-input'>
-                <input placeholder='Your Email' type='email' onChange={handleEmailChange} value={email} required/>
-            </div>
+                <div className='auth-input'>
+                    <input placeholder='Your Email' type='email' onChange={handleEmailChange} value={email} required/>
+                </div>
 
-            <div className='auth-password'>
-                <input 
-                    type={showPassword ? 'text' : 'password'}
-                    placeholder='Your Password'
-                    value={password}
-                    onChange={handlePasswordChange}
-                    required
-                />
-                {showPassword ? (
-                    <VscEyeClosed size={20} onClick={togglePasswordVisibility} />
-                ) : (
-                    <VscEye size={20} onClick={togglePasswordVisibility} />
-                )}
+                <div className='auth-password'>
+                    <input 
+                        type={showPassword ? 'text' : 'password'}
+                        placeholder='Your Password'
+                        value={password}
+                        onChange={handlePasswordChange}
+                        required
+                    />
+                    {showPassword ? (
+                        <VscEyeClosed size={20} onClick={togglePasswordVisibility} />
+                    ) : (
+                        <VscEye size={20} onClick={togglePasswordVisibility} />
+                    )}
+                </div>
+                <div className='auth-links'>
+                    <Link to="/forget-path">Forget Password</Link>
+                    <Link to="/register">Register</Link>
+                </div>
+                
+                <button onClick={handleSubmit}>Login</button>
+
             </div>
-            <div className='auth-links'>
-                <Link to="/forget-path">Forget Password</Link>
-                <Link to="/register">Register</Link>
-            </div>
-            
-            <button onClick={handleSubmit}>Login</button>
 
         </div>
-
     </div>
   )
 }

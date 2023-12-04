@@ -1,16 +1,15 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
 	FaAngleRight,
 	FaAngleLeft, 
-	FaChartBar, 
 	FaThLarge, 
-	FaShoppingCart, 
 	FaCog,
 	FaSignOutAlt,
-	FaBars
+	FaBars,
+	FaStreetView
 } from 'react-icons/fa';
 import QRCode from "react-qr-code";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './SideBar.css'
 import {userLogOut} from '../../actions/userAction'
 import { useSelector, useDispatch } from "react-redux";
@@ -22,28 +21,53 @@ import dummy from '../../assets/logo.png'
 const SideBar = ({visible, show}) => {
 
 	const dispatch = useDispatch()
+	const navigate = useNavigate()
 
 	const handleLogout = () => {
 		store.dispatch(userLogOut());
+		navigate("\login")
 	};
+
+	const {user } = useSelector((state) => state.user);
 
 	const {logo, loading} = useSelector(state=>state.logo);
 
+	const [username, setUserName] = useState('')
+	const [view, setView] = useState('')
+
+
     const ICON_SIZE = 20;
 
-	const value = 'https://www.linkedin.com/in/muhammad-sarim-679576212/'
+	const value = `http://localhost:3000/company/${username}/followup`;
+
+	const handleUserViewOn = () => {
+		const userViewObject = { userView: true };
+		localStorage.setItem('userView', JSON.stringify(userViewObject));
+		window.location.reload()
+	}
+
+
+	const handleUserViewOf = () => {
+		const userViewObject = { userView: false };
+		localStorage.setItem('userView', JSON.stringify(userViewObject));
+		handleLogout()
+	}
 
 	useEffect(() =>{
+
+		const userViewString = localStorage.getItem('userView');
+		const userViewObject = JSON.parse(userViewString);
+		const userView = userViewObject?.userView;
+		setView(userView)
 
 		// if(error){
 		//   alert.error(error)
 		//   dispatch(clearErrors());
 		// }
-  
+  		setUserName(user?.username)
 		dispatch(getLogo());
   
-	}, [dispatch])
-
+	}, [dispatch, user])
 
   return (
     <>
@@ -56,18 +80,18 @@ const SideBar = ({visible, show}) => {
 				</button>
 			</div>
 			<nav className={!visible ? 'navbar' : ''}>
-				<button
+				{/* <button
 					type="button"
 					className="nav-btn"
 					onClick={() => show(!visible)}
 				>
 					{ !visible
 						? <FaAngleRight size={30} /> : <FaAngleLeft size={30} />}
-				</button>
+				</button> */}
 				<div>
 					<Link
 						className="logo"
-						to="/"
+						to={`/company/${username}/dashboard`}
 					>
 							{logo?.logo?.success === false ? 
 								<img
@@ -86,15 +110,22 @@ const SideBar = ({visible, show}) => {
                     </div>
 
 					<div className="links nav-top">
-						<Link to="/" className="nav-link">
+						<Link to={`/company/${username}/dashboard`} className="nav-link">
 							<FaThLarge size={ICON_SIZE} />
 							<span>Dashboard</span>
 						</Link>
-						<Link to="/settings" className="nav-link">
-                            <FaCog size={ICON_SIZE} />
-                            <span>Settings</span> 
-					    </Link>
+						{/* <Link to={`/${username}/followup`} className="nav-link">
+                            <RiUserFollowFill size={ICON_SIZE} />
+                            <span>Follows Page</span> 
+					    </Link> */}
 
+						{view === true ? "" : (
+							<Link to="/company/settings" className="nav-link">
+								<FaCog size={ICON_SIZE} />
+								<span>Settings</span> 
+							</Link>
+						)}
+						
 
 						<div>
 							<div style={{ height: "auto", margin: "30px auto", maxWidth: 150, width: "100%" }}>
@@ -114,12 +145,31 @@ const SideBar = ({visible, show}) => {
 							</div>
 						</div>
 
-						<div className="links nav-ends">
-							<Link className="nav-link" onClick={handleLogout}>
-								<FaSignOutAlt size={ICON_SIZE} />
-								<span>Logout</span> 
-							</Link>
-						</div>
+
+						{view === true ? (
+							<div className="links nav-ends">
+								<Link className="nav-link" onClick={handleUserViewOf} >
+									<FaSignOutAlt size={ICON_SIZE} />
+									<span>Logout</span> 
+								</Link>
+							</div>
+						) : (
+							<div className="links nav-ends">
+								<Link className="nav-link" onClick={handleUserViewOn} >
+									<FaStreetView size={ICON_SIZE} />
+									<span>User View</span> 
+								</Link>
+							</div>
+						)}
+
+						{view === true ?  "" : (
+							<div className="links nav-ends">
+								<Link className="nav-link" onClick={handleLogout}>
+									<FaSignOutAlt size={ICON_SIZE} />
+									<span>Logout</span> 
+								</Link>
+							</div>
+						)}
 
 					</div>
 

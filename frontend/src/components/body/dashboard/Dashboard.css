@@ -30,6 +30,10 @@
     gap: 30px;
 }
 
+.dashboard-wrapper a{
+    text-decoration: none;
+}
+
 
 .social-counter-container{
     position: relative;
@@ -105,9 +109,10 @@
 
 .social-counter-name p{
     font-size: 20px;
-    font-weight: 400;
+    font-weight: 500;
     background-color: transparent;
-
+    text-decoration: none;
+    color: rgb(61, 61, 61);
 }
 
 

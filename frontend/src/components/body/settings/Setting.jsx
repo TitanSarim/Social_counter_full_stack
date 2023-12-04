@@ -46,6 +46,7 @@ const Setting = () => {
   const [twitterSubmit, setTwitterSubmit] = useState("")
   const [tiktokSubmit, setTiktokSubmit] = useState("")
   
+  const [priorities, setPriorities] = useState([]);
 
   const [youtubePrioritySubmit, setYoutubePrioritySubmit] = useState("")
   const [facebookPrioritySubmit, setFacebookPrioritySubmit] = useState("")
@@ -59,7 +60,7 @@ const Setting = () => {
   const [twitterActivate, setTwitterActivate] = useState()
   const [tiktokActivate, setTiktokActivate] = useState()
 
-  console.log("username", username);
+  console.log("username", url);
 
   const handleTitleChange = (e) => {
     const newTitle = e.target.value;
@@ -263,6 +264,12 @@ useEffect(() => {
     setTwitter(separatedUrls.twitter);
     setTiktok(separatedUrls.tiktok);
     }
+
+    const allPriorities = Array.from({ length: 10 }, (_, i) => i + 1);
+    const extractedPriorities = url?.url?.map((item) => item.priority);
+    const missingPriorities = allPriorities?.filter((priority) => !extractedPriorities?.includes(priority));
+    setPriorities(missingPriorities);
+
   }, [url]);
 
   useEffect(() => {
@@ -590,7 +597,12 @@ useEffect(() => {
               <input type='text' placeholder='Enter Youtube ID' value={youtubeSubmit} onChange={handleYoutubeChange}/>
             </td>
             <td className='priority-table-column'>
-              <input type='number' placeholder="Set Priority" value={youtubePrioritySubmit} onChange={handleYoutubePiorityChange}/>
+              <select value={youtubePrioritySubmit} onChange={handleYoutubePiorityChange}>
+                <option selected disabled>{youtubePrioritySubmit}</option>
+                {priorities?.map((item) => (
+                  <option>{item}</option>
+                ))}
+              </select>
             </td>
             <td className='button-table-column'>
               <button onClick={handleSubmitYoutube}>Save</button>
@@ -613,7 +625,12 @@ useEffect(() => {
               <input type='text' placeholder='Enter Facebook PageId' value={facebookSubmit} onChange={handleFacebookChange}/>
             </td>
             <td className='priority-table-column'>
-              <input type='number' placeholder="Set Priority" value={facebookPrioritySubmit} onChange={handleFacebookPiorityChange}/>
+              <select value={facebookPrioritySubmit} onChange={handleFacebookPiorityChange}>
+                  <option selected disabled>{facebookPrioritySubmit}</option>
+                  {priorities?.map((item) => (
+                    <option>{item}</option>
+                  ))}
+              </select>
             </td>
             <td className='button-table-column'>
               <button onClick={handleSubmitFacebook}>Save</button>
@@ -636,7 +653,12 @@ useEffect(() => {
               <input type='text' placeholder='Enter Instagram Username' value={instagramSubmit} onChange={handleInstagramChange}/>
             </td>
             <td className='priority-table-column'>
-              <input type='number' placeholder="Set Priority" value={instagramPrioritySubmit} onChange={handleInstagramPiorityChange}/>
+              <select value={instagramPrioritySubmit} onChange={handleInstagramPiorityChange}>
+                  <option selected disabled>{instagramPrioritySubmit}</option>
+                  {priorities?.map((item) => (
+                    <option>{item}</option>
+                  ))}
+              </select>
             </td>
             <td className='button-table-column'>
               <button onClick={handleSubmitInstagram}>Save</button>
@@ -658,7 +680,12 @@ useEffect(() => {
               <input type='text' placeholder='Enter Tiktok Username' value={tiktokSubmit} onChange={handleTiktokChange}/>
             </td>
             <td className='priority-table-column'>
-              <input type='number' placeholder="Set Priority" value={tiktokPrioritySubmit} onChange={handleTiktokPiorityChange}/>
+              <select value={tiktokPrioritySubmit} onChange={handleTiktokPiorityChange}>
+                  <option selected disabled>{tiktokPrioritySubmit}</option>
+                  {priorities?.map((item) => (
+                    <option>{item}</option>
+                  ))}
+              </select>
             </td>
             <td className='button-table-column'>
               <button onClick={handleSubmitTiktok}>Save</button>
@@ -680,7 +707,12 @@ useEffect(() => {
               <input type='text' placeholder='Enter Twitter Username' value={twitterSubmit} onChange={handleTwitterChange}/>
             </td>
             <td className='priority-table-column'>
-              <input type='number' placeholder="Set Priority" value={twitterPrioritySubmit} onChange={handleTwitterPiorityChange}/>
+              <select value={twitterPrioritySubmit} onChange={handleTwitterPiorityChange}>
+                  <option selected disabled>{twitterPrioritySubmit}</option>
+                  {priorities?.map((item) => (
+                    <option>{item}</option>
+                  ))}
+              </select>
             </td>
             <td className='button-table-column'>
               <button onClick={handleSubmitTwitter}>Save</button>
