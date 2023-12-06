@@ -1,13 +1,12 @@
 import React, {useEffect, useState} from 'react'
-
+import Confetti from 'react-confetti';
 import {FaTiktok} from 'react-icons/fa'
 
-const TikTok = () => {
+const TikTok = ({setIsTiktokCelebrating}) => {
 
 
   const [subscribers, setSubscribers] = useState(2345);
   const [isHovered, setIsHovered] = useState(false);
-
 
   const increaseSubscribers = () => {
     setSubscribers(subscribers + 1);
@@ -15,6 +14,15 @@ const TikTok = () => {
     setTimeout(() => {
       setIsHovered(false);
     }, 1000);
+
+    if ((subscribers + 1) % 10 === 0) {
+      // Trigger celebration
+      setIsTiktokCelebrating(true);
+      setTimeout(() => {
+        setIsTiktokCelebrating(false);;
+      }, 10000); 
+    }
+
   };
 
   useEffect(() => {
@@ -44,7 +52,6 @@ const TikTok = () => {
             <p className={`changedDigit ${isHovered ? 'animated' : ''} `}>{changingPart}</p>
           </p>
         </div>
-    
     </div>
   )
 }

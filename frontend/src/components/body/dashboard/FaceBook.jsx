@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 
 import {FaFacebookF} from 'react-icons/fa'
 
-const FaceBook = () => {
+const FaceBook = ({setIsFaceBookCelebrating}) => {
 
   const [subscribers, setSubscribers] = useState(2345);
   const [isHovered, setIsHovered] = useState(false);
@@ -14,6 +14,15 @@ const FaceBook = () => {
     setTimeout(() => {
       setIsHovered(false);
     }, 1000);
+
+    if ((subscribers + 1) % 50 === 0) {
+      // Trigger celebration
+      setIsFaceBookCelebrating(true);
+      setTimeout(() => {
+        setIsFaceBookCelebrating(false);;
+      }, 10000); 
+    }
+
   };
 
   useEffect(() => {

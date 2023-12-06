@@ -5,6 +5,7 @@ import FaceBook from './FaceBook'
 import TikTok from './TikTok'
 import {useSelector, useDispatch} from 'react-redux';
 import {getTitle, clearErrors} from '../../../actions/titleAction'
+import Confetti from 'react-confetti';
 
 import './Dashboard.css'
 import { Link } from 'react-router-dom'
@@ -15,8 +16,13 @@ const Dashbaord = () => {
 
     const {title} = useSelector(state=>state.title);
     const [username, setUserName] = useState('')
+    
+    const [isTiktokCelebrating, setIsTiktokCelebrating] = useState(false);
+    const [isFaceBookCelebrating, setIsFaceBookCelebrating] = useState(false);
+    const [isYoutubeCelebrating, setIsYoutubeCelebrating] = useState(false);
+    const [isInstagramCelebrating, setIsInstagramCelebrating] = useState(false);
 
-    const { isAuthenticated, user } = useSelector((state) => state.user);
+    const { user } = useSelector((state) => state.user);
     useEffect(() =>{
 
       setUserName(user?.username)
@@ -25,46 +31,41 @@ const Dashbaord = () => {
 
   }, [dispatch, user])
 
-  console.log(title?.title);
 
   return (
+    <>
 
-    <div className='dashboard-container'>
+      <div className='dashboard-container'>
+        
+        {isTiktokCelebrating && 
+        <div className='confetti'>
+          <Confetti />
+        </div>}
 
-      {title?.success === false ? 
-        <p>Please add title</p>
-        :           
-        <p>{title?.title?.title}</p>
-      }
+        {title?.success === false ? 
+          <p>Please add title</p>
+          :           
+          <p>{title?.title?.title}</p>
+        }
 
-        <div className='dashboard-wrapper'>
-            <Link to={`/company/${username}/followup`}>
-              <Instagram/>
-            </Link>
-            <Link to={`/company/${username}/followup`}>
-              <Youtube/>
-            </Link>
-            <Link to={`/company/${username}/followup`}>
-              <FaceBook/>
-            </Link>
-            <Link to={`/company/${username}/followup`}>
-              <TikTok/>
-            </Link>
+          <div className='dashboard-wrapper'>
+              <Link to={`/${username}/followup`}>
+                <Instagram setIsInstagramCelebrating={setIsInstagramCelebrating} isInstagramCelebrating={isInstagramCelebrating}/>
+              </Link>
+              <Link to={`/${username}/followup`}>
+                <Youtube setIsYoutubeCelebrating={setIsYoutubeCelebrating} isYoutubeCelebrating={isYoutubeCelebrating}/>
+              </Link>
+              <Link to={`/${username}/followup`}>
+                <FaceBook setIsFaceBookCelebrating={setIsFaceBookCelebrating} isFaceBookCelebrating={isFaceBookCelebrating} />
+              </Link>
+              <Link to={`/${username}/followup`}>
+                <TikTok setIsTiktokCelebrating={setIsTiktokCelebrating} isTiktokCelebrating={isTiktokCelebrating}/>
+              </Link>
+  
+          </div>
 
-            <Link to={`/company/${username}/followup`}>
-              <Youtube/>
-            </Link>
-            <Link to={`/company/${username}/followup`}>
-              <FaceBook/>
-            </Link>
-            <Link to={`/company/${username}/followup`}>
-              <TikTok/>
-            </Link>
-            
-        </div>
-
-    </div>
-
+      </div>
+    </>
   )
 }
 

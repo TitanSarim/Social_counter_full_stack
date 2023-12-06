@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 
 import {FaYoutube} from 'react-icons/fa'
 
-const Youtube = () => {
+const Youtube = ({setIsYoutubeCelebrating}) => {
 
   const [subscribers, setSubscribers] = useState(2345);
   const [isHovered, setIsHovered] = useState(false);
@@ -14,6 +14,14 @@ const Youtube = () => {
     setTimeout(() => {
       setIsHovered(false);
     }, 1000);
+
+    if ((subscribers + 1) % 50 === 0) {
+      // Trigger celebration
+      setIsYoutubeCelebrating(true);
+      setTimeout(() => {
+        setIsYoutubeCelebrating(false);;
+      }, 10000); 
+    }
   };
 
   useEffect(() => {

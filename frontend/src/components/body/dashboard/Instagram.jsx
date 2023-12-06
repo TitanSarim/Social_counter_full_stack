@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react'
 
 import {FaInstagram} from 'react-icons/fa'
 
-const Instagram = () => {
+const Instagram = ({setIsInstagramCelebrating}) => {
 
   const [subscribers, setSubscribers] = useState(2345);
   const [isHovered, setIsHovered] = useState(false);
@@ -15,6 +15,15 @@ const Instagram = () => {
     setTimeout(() => {
       setIsHovered(false);
     }, 1000);
+
+    if ((subscribers + 1) % 50 === 0) {
+      // Trigger celebration
+      setIsInstagramCelebrating(true);
+      setTimeout(() => {
+        setIsInstagramCelebrating(false);;
+      }, 10000); 
+    }
+
   };
 
   useEffect(() => {

@@ -25,7 +25,9 @@ const SideBar = ({visible, show}) => {
 
 	const handleLogout = () => {
 		store.dispatch(userLogOut());
-		navigate("\login")
+		const userViewObject = { userView: false };
+		localStorage.setItem('userView', JSON.stringify(userViewObject));
+		navigate("/login")
 	};
 
 	const {user } = useSelector((state) => state.user);
@@ -38,20 +40,20 @@ const SideBar = ({visible, show}) => {
 
     const ICON_SIZE = 20;
 
-	const value = `http://localhost:3000/company/${username}/followup`;
+	const value = `http://localhost:3000/${username}/followup`;
 
 	const handleUserViewOn = () => {
 		const userViewObject = { userView: true };
 		localStorage.setItem('userView', JSON.stringify(userViewObject));
+		navigate(`/${username}/dashboard`)
 		window.location.reload()
 	}
 
 
-	const handleUserViewOf = () => {
-		const userViewObject = { userView: false };
-		localStorage.setItem('userView', JSON.stringify(userViewObject));
-		handleLogout()
-	}
+	// const handleUserViewOf = () => {
+	// 	const userViewObject = { userView: false };
+	// 	localStorage.setItem('userView', JSON.stringify(userViewObject));
+	// }
 
 	useEffect(() =>{
 
@@ -91,7 +93,7 @@ const SideBar = ({visible, show}) => {
 				<div>
 					<Link
 						className="logo"
-						to={`/company/${username}/dashboard`}
+						to={`/${username}/dashboard`}
 					>
 							{logo?.logo?.success === false ? 
 								<img
@@ -110,7 +112,7 @@ const SideBar = ({visible, show}) => {
                     </div>
 
 					<div className="links nav-top">
-						<Link to={`/company/${username}/dashboard`} className="nav-link">
+						<Link to={`/${username}/dashboard`} className="nav-link">
 							<FaThLarge size={ICON_SIZE} />
 							<span>Dashboard</span>
 						</Link>
@@ -120,7 +122,7 @@ const SideBar = ({visible, show}) => {
 					    </Link> */}
 
 						{view === true ? "" : (
-							<Link to="/company/settings" className="nav-link">
+							<Link to="/settings" className="nav-link">
 								<FaCog size={ICON_SIZE} />
 								<span>Settings</span> 
 							</Link>
@@ -148,7 +150,7 @@ const SideBar = ({visible, show}) => {
 
 						{view === true ? (
 							<div className="links nav-ends">
-								<Link className="nav-link" onClick={handleUserViewOf} >
+								<Link className="nav-link" onClick={handleLogout} >
 									<FaSignOutAlt size={ICON_SIZE} />
 									<span>Logout</span> 
 								</Link>

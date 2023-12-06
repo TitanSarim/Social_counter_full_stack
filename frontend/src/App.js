@@ -20,11 +20,19 @@ function App() {
 
   const [navVisible, showNavbar] = useState(true);
   const [username, setUserName] = useState('')
+  const [view, setView] = useState('')
+
+
 
   const { isAuthenticated, user } = useSelector((state) => state.user);
 
   useEffect(() => {
     setUserName(user?.username)
+
+    const userViewString = localStorage.getItem('userView');
+		const userViewObject = JSON.parse(userViewString);
+		const userView = userViewObject?.userView;
+		setView(userView)
   }, [user])  
 
 
@@ -38,22 +46,21 @@ function App() {
           <div className='app-container'>
 
             {!isAuthenticated ? "" : (
-              (window.location.pathname === `/company/settings` || window.location.pathname === `/company/${username}/dashboard` || window.location.pathname === `/company/${username}/followup`) && (
                 <SideBar visible={navVisible} show={showNavbar} />
-              )
+              
             )}
 
             <Routes>
 
-              <Route path="/company" element={<ProtectedRoute />}>
-                <Route path="/company/settings" element={<Setting/>}/>
-                <Route path={`/company/${username}/dashboard`} element={<Dashbaord/>}/>
+              <Route path="/" element={<ProtectedRoute />}>
+                {view === true ? "" : (
+                  <Route path="/settings" element={<Setting/>}/>
+                )}
+                <Route path={`/${username}/dashboard`} element={<Dashbaord/>}/>
               </Route>
 
               {/* public route */}
-                <Route path="/" element={<Home/>}/>
-                <Route path={`/${username}/view`} element={<ViewPage/>}/>
-                <Route path={`/company/${username}/followup`} element={<FollowUp/>}/>
+                <Route path={`/${username}/followup`} element={<FollowUp/>}/>
               {/* public route */}
 
                 <Route path="/login" element={<Login />}/>
