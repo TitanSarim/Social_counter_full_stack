@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react'
-import Confetti from 'react-confetti';
 import {FaTiktok} from 'react-icons/fa'
 
 const TikTok = ({setIsTiktokCelebrating}) => {

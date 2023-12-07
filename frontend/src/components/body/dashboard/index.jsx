@@ -4,7 +4,7 @@ import Youtube from './Youtube'
 import FaceBook from './FaceBook'
 import TikTok from './TikTok'
 import {useSelector, useDispatch} from 'react-redux';
-import {getTitle, clearErrors} from '../../../actions/titleAction'
+import {getTitle} from '../../../actions/titleAction'
 import Confetti from 'react-confetti';
 
 import './Dashboard.css'
@@ -31,16 +31,24 @@ const Dashbaord = () => {
 
   }, [dispatch, user])
 
+  const { width, height } = '100%'
 
   return (
     <>
 
       <div className='dashboard-container'>
         
-        {isTiktokCelebrating && 
-        <div className='confetti'>
-          <Confetti />
-        </div>}
+        { 
+          isTiktokCelebrating || 
+          isFaceBookCelebrating ||
+          isInstagramCelebrating ||
+          isYoutubeCelebrating ||
+          <div className='confetti'>
+            <Confetti 
+              width="1000px"
+              numberOfPieces={1000}
+            />
+          </div>}
 
         {title?.success === false ? 
           <p>Please add title</p>

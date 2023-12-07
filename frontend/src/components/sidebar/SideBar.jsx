@@ -122,7 +122,7 @@ const SideBar = ({visible, show}) => {
 					    </Link> */}
 
 						{view === true ? "" : (
-							<Link to="/settings" className="nav-link">
+							<Link to="/" className="nav-link">
 								<FaCog size={ICON_SIZE} />
 								<span>Settings</span> 
 							</Link>

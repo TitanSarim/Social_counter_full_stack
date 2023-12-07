@@ -45,16 +45,13 @@ function App() {
 
           <div className='app-container'>
 
-            {!isAuthenticated ? "" : (
-                <SideBar visible={navVisible} show={showNavbar} />
-              
-            )}
+            {!isAuthenticated ? '' : (window.location.pathname !== `/${username}/followup` && <SideBar visible={navVisible} show={showNavbar} />)}
 
             <Routes>
 
               <Route path="/" element={<ProtectedRoute />}>
                 {view === true ? "" : (
-                  <Route path="/settings" element={<Setting/>}/>
+                  <Route path="/" element={<Setting/>}/>
                 )}
                 <Route path={`/${username}/dashboard`} element={<Dashbaord/>}/>
               </Route>

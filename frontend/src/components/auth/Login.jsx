@@ -53,7 +53,7 @@ const Login = () => {
         }
       
         if(isAuthenticated){
-            naviagte('/settings')
+            naviagte('/')
         }
     }, [alert, dispatch, error, isAuthenticated, naviagte, user])
 

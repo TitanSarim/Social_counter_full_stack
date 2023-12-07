@@ -35,19 +35,19 @@ export const FollowUp = () => {
       let iconComponent;
         switch (app.appname.toLowerCase()) {
           case 'facebook':
-            iconComponent = <FaFacebook />;
+            iconComponent = <FaFacebook size={25} style={{"color": "#0484cf"}}/>;
             break;
           case 'instagram':
-            iconComponent = <FaInstagram />;
+            iconComponent = <FaInstagram size={25} style={{"color": "#fc03b1"}}/>;
             break;
           case 'youtube':
-            iconComponent = <FaYoutube />;
+            iconComponent = <FaYoutube size={27} style={{"color": "red"}}/>;
             break;
           case 'tiktok':
-            iconComponent = <FaTiktok />;
+            iconComponent = <FaTiktok size={23} style={{"color": "black"}}/>;
             break;
           case 'twitter':
-            iconComponent = <FaTwitter />;
+            iconComponent = <FaTwitter size={25} style={{"color": "blue"}}/>;
             break;
           default:
             iconComponent = null;
@@ -82,14 +82,10 @@ export const FollowUp = () => {
         <div className='followup-page-wrapper'>
           
           {appLinks?.map((item) => (
-          <div key={item.appName} className='followup-page-mapper'>
-           
-            
-            <div className='followup-page-mapper-footer'>
-              <Link to={item.appLink} target='_blank'>{item.appName}</Link>
-              {item.iconComponent}
-            </div>
-          </div>
+            <Link to={item.appLink} target='_blank' key={item.appName} className='followup-page-mapper'>
+                <p>{item.appName}</p>
+                {item.iconComponent}
+            </Link>
 
           ))}
 
