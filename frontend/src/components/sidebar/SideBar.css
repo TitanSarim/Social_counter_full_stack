@@ -6,7 +6,7 @@ nav{
 	flex-direction:column;
 	justify-content: flex-start;
 	width: 210px;
-	height: 100vh;
+	height: 820px;
 	background-color: #ffffff;
 	padding:2rem 1rem 1rem 1rem;
 	transition: transform 1s;

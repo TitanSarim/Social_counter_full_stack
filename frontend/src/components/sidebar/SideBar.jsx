@@ -17,6 +17,7 @@ import { getLogo } from '../../actions/imageAction';
 import store from "../../store";
 
 import dummy from '../../assets/logo.png'
+import CompaniesLogo from '../../assets/companiesLogo.png'
 
 const SideBar = ({visible, show}) => {
 
@@ -174,6 +175,13 @@ const SideBar = ({visible, show}) => {
 						)}
 
 					</div>
+
+					<img
+						src={CompaniesLogo}
+						alt='companies logo'
+						width={210}
+						style={{'borderRadius': '4px', "marginTop": "10px"}}
+					/>
 
 				</div>
 

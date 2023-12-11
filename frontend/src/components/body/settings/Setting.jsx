@@ -546,7 +546,7 @@ useEffect(() => {
 
     <div className='company-info-container'>
       <div className='company-info-title'>
-        <p>Add custom Title</p>
+        <p>Add Custom Title</p>
         <input placeholder='Add your title' value={heading}  onChange={handleTitleChange}/>
         <button onClick={handleTitleSubmit}>Save</button>
       </div>
@@ -558,13 +558,13 @@ useEffect(() => {
       </div>
 
       <div className='company-info-title'>
-        <p>Followup Title</p>
+        <p>Edit Followers Text</p>
         <input placeholder='Add your title' value={followUpTitle}  onChange={handleFollowUpTitleChange}/>
         <button onClick={handleFollowUpTitleSubmit}>Save</button>
       </div>
 
       <div className='company-info-logo'> 
-        <p>Upload your custom Logo</p>
+        <p>Upload Your Custom Logo</p>
         <div className='company-info-image'>
         <input type='file' accept='image/*' onChange={(e) => setSelectedImage(e.target.files[0])}/>
           {/* {selectedImage && (
